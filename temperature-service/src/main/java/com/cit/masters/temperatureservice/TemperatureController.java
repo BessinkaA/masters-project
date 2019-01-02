@@ -1,5 +1,6 @@
 package com.cit.masters.temperatureservice;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import javax.validation.Valid;
  *
  */
 @Controller
+@Slf4j
 public class TemperatureController {
 
     private TemperatureService temperatureService;
@@ -25,10 +27,11 @@ public class TemperatureController {
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public ResponseEntity<Object> create(@RequestBody @Valid TemperatureData data) {
+        log.info("Temperature request: {}", data);
         boolean received = temperatureService.receive(data);
         if (!received) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Nope");
         }
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+        return ResponseEntity.status(HttpStatus.OK).body("Works");
     }
 }

@@ -9,13 +9,13 @@ spring:
       routes:
       - id: temperature_route
         predicates:
-        - Path=/temperature/**
+          - Path=/temperature/**
         filters:
-        - StripPrefix=1
-        uri: localhost:8081
+          - StripPrefix=1
+        uri: http://localhost:8081
       - id: occupancy_route
         predicates:
-        - Path=/occupancy/**
+          - Path=/occupancy/**
         filters:
-        - StripPrefix=1
-        uri: localhost:8082
+          - StripPrefix=1
+        uri: http://localhost:8082

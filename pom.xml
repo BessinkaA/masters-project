@@ -4,12 +4,15 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.cit.masters</groupId>
-	<artifactId>gateway-service</artifactId>
+	<artifactId>masters-project</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<modules>
+		<module>gateway-service</module>
+	</modules>
+	<packaging>pom</packaging>
 
-	<name>gateway-service</name>
-	<description>Gateway service for Masters project</description>
+	<name>masters-project</name>
+	<description>Masters project</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -26,11 +29,6 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-gateway</artifactId>
-		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

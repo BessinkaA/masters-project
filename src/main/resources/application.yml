@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+      - id: temperature_route
+        predicates:
+        - Path=/temperature/**
+        filters:
+        - StripPrefix=1
+        uri: localhost:8081
+      - id: occupancy_route
+        predicates:
+        - Path=/occupancy/**
+        filters:
+        - StripPrefix=1
+        uri: localhost:8082

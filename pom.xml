@@ -13,6 +13,7 @@
 		<module>climate-control-service</module>
         <module>fire-service</module>
 		<module>hvac-service</module>
+		<module>alert-service</module>
 	</modules>
 	<packaging>pom</packaging>
 

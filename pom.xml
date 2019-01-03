@@ -14,7 +14,8 @@
         <module>fire-service</module>
 		<module>hvac-service</module>
 		<module>alert-service</module>
-	</modules>
+        <module>contact-service</module>
+    </modules>
 	<packaging>pom</packaging>
 
 	<name>masters-project</name>

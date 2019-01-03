@@ -22,7 +22,7 @@ public class OccupancyController {
 
     @PostMapping
     public ResponseEntity<Object> create(@RequestBody @Valid OccupancyData data) {
-        log.info("Temperature request: {}", data);
+        log.info("Occupancy request: {}", data);
         boolean received = occupancyService.receive(data);
         if (!received) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Occupancy service returned bad request");

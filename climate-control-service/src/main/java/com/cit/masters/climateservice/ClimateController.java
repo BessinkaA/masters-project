@@ -26,8 +26,8 @@ public class ClimateController {
         log.info("Incoming Temperature request to Climate Control: {}", data);
         boolean received = climateService.receive(data);
         if (!received) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Climate control - bad request");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
-        return ResponseEntity.status(HttpStatus.OK).body("Climate control works ok");
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 }

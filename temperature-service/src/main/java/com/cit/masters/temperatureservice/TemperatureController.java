@@ -23,10 +23,10 @@ public class TemperatureController {
     @PostMapping
     public ResponseEntity<Object> create(@RequestBody @Valid TemperatureData data) {
         log.info("Temperature request: {}", data);
-        boolean received = temperatureService.receive(data);
-        if (!received) {
+        boolean processed = temperatureService.process(data);
+        if (!processed) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Nope");
         }
-        return ResponseEntity.status(HttpStatus.OK).body("Works");
+        return ResponseEntity.status(HttpStatus.OK).body("Temperature request was processed");
     }
 }

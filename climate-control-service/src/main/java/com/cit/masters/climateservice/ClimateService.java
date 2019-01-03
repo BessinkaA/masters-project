@@ -17,14 +17,19 @@ public class ClimateService {
 
         // TODO: add proper validation for UUID and such
         log.info("Fire alert received, temperature is {}", data.getTemperature());
-        RestTemplate restTemplate = new RestTemplate();
-        HttpEntity<AssetClimateData> request = new HttpEntity<>(data);
-        try {
-            ResponseEntity<String> entity = restTemplate.postForEntity("http://localhost:8084", request, String.class);
-            log.info("Response status: {}", entity.getStatusCodeValue());
+        if (data.getTemperature() > 50) {
+            RestTemplate restTemplate = new RestTemplate();
+            HttpEntity<AssetClimateData> request = new HttpEntity<>(data);
+            try {
+                ResponseEntity<String> entity = restTemplate.postForEntity("http://localhost:8084", request, String.class);
+                log.info("Response status: {}", entity.getStatusCodeValue());
+                return true;
+            } catch (Exception ex) {
+                return false;
+            }
+        } else{
+            log.info("Not a fire event, temperature is {}", data.getTemperature());
             return true;
-        } catch (Exception ex) {
-            return false;
         }
     }
 }

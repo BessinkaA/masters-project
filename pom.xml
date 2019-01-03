@@ -10,6 +10,7 @@
 		<module>gateway-service</module>
 		<module>occupancy-service</module>
 		<module>temperature-service</module>
+		<module>climate-control-service</module>
 	</modules>
 	<packaging>pom</packaging>
 

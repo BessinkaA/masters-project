@@ -15,7 +15,8 @@
 		<module>hvac-service</module>
 		<module>alert-service</module>
         <module>contact-service</module>
-    </modules>
+		<module>asset-service</module>
+	</modules>
 	<packaging>pom</packaging>
 
 	<name>masters-project</name>

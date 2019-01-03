@@ -19,7 +19,14 @@ public class FireService {
         log.info("Fire service: Fire alert received, temperature is {}", data.getTemperature());
         RestTemplate restTemplate = new RestTemplate();
 
-        HttpEntity<AssetClimateData> request = new HttpEntity<>(data);
+        // Request contact from contact service
+        ContactResponse contact = restTemplate.getForObject("http://localhost:8086/" + data.getSensorId(), ContactResponse.class);
+
+        // Create new payload
+        EnrichedAssetClimateData enrichedData = new EnrichedAssetClimateData(contact, data);
+
+        // Contact alert Service
+        HttpEntity<EnrichedAssetClimateData> request = new HttpEntity<>(enrichedData);
         try {
             ResponseEntity<String> entity = restTemplate.postForEntity("http://localhost:8086", request, String.class);
             log.info("Response status: {}", entity.getStatusCodeValue());

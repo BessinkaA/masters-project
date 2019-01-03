@@ -3,7 +3,7 @@ package com.cit.masters.contactservice;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -14,12 +14,11 @@ import java.util.Random;
 public class ContactService {
 
 
-    public Object retrieveContacts() {
-        Map<String, String> contactsMap = ContactUtils.getContactsMap();
-        Random random = new Random();
+    public Contact retrieveContacts() {
+        List<Contact> contacts = ContactUtils.getContactsList();
 
         //Get random name
-        Object randomName = contactsMap.keySet().toArray()[new Random().nextInt(contactsMap.keySet().toArray().length)];
+        Contact randomName = contacts.get(new Random().nextInt(contacts.size()));
         log.info("Got contact name: {}", randomName);
 
         return randomName;

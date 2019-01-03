@@ -22,11 +22,11 @@ public class ContactController {
     @GetMapping(value = "/{sensorId}")
     public ResponseEntity<Object> getEmergencyContacts(@PathVariable("sensorId") String sensorId) {
         log.info("Got request for contacts for sensor: {}", sensorId);
-        Object contactName = contactService.retrieveContacts();
-        if (contactName == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        Contact contact = contactService.retrieveContacts();
+        if (contact == null) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
-        //TODO else return contacts
-        return ResponseEntity.status(HttpStatus.OK).body(contactName);
+
+        return ResponseEntity.status(HttpStatus.OK).body(contact);
     }
 }

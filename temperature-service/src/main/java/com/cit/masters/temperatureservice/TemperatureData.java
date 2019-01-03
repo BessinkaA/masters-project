@@ -3,6 +3,7 @@ package com.cit.masters.temperatureservice;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 
@@ -12,6 +13,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
+@ToString
 public class TemperatureData implements Serializable {
 
     @NonNull

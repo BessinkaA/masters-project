@@ -3,6 +3,7 @@ package com.cit.masters.occupancyservice;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  *
@@ -10,6 +11,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@ToString
 public class OccupancyData {
 
     @NonNull

@@ -21,7 +21,7 @@ public class AlertController {
     private AlertService alertService;
 
     @PostMapping
-    public ResponseEntity<Object> create(@RequestBody @Valid AssetClimateData data) {
+    public ResponseEntity<Object> create(@RequestBody @Valid EnrichedAssetClimateData data) {
         log.info("Incoming Fire alert to Alert Controller: {}", data);
         boolean received = alertService.receive(data);
         if (!received) {

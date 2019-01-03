@@ -12,10 +12,10 @@ import static java.util.UUID.fromString;
 @Slf4j
 public class AlertService {
 
-    public Boolean receive(AssetClimateData data) {
+    public Boolean receive(EnrichedAssetClimateData data) {
 
         try {
-            fromString(data.getSensorId());
+            fromString(data.getClimateData().getSensorId());
             return true;
         } catch (IllegalArgumentException exception) {
             return false;

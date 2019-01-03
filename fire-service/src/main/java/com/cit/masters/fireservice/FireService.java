@@ -20,7 +20,7 @@ public class FireService {
         RestTemplate restTemplate = new RestTemplate();
 
         // Request contact from contact service
-        ContactResponse contact = restTemplate.getForObject("http://localhost:8086/" + data.getSensorId(), ContactResponse.class);
+        ContactResponse contact = restTemplate.getForObject("http://localhost:8087/" + data.getSensorId(), ContactResponse.class);
 
         // Create new payload
         EnrichedAssetClimateData enrichedData = new EnrichedAssetClimateData(contact, data);

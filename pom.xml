@@ -12,7 +12,8 @@
 		<module>temperature-service</module>
 		<module>climate-control-service</module>
         <module>fire-service</module>
-    </modules>
+		<module>hvac-service</module>
+	</modules>
 	<packaging>pom</packaging>
 
 	<name>masters-project</name>

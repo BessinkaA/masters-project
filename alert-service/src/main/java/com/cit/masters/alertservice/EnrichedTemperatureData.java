@@ -1,4 +1,4 @@
-package com.cit.masters.contactservice;
+package com.cit.masters.alertservice;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,13 +8,12 @@ import lombok.ToString;
 /**
  *
  */
-
 @Getter
 @Setter
 @AllArgsConstructor
 @ToString
-public class Contact {
+public class EnrichedTemperatureData {
 
-    private String name;
-    private String phone;
+    private AssetResponse asset;
+    private TemperatureData temperatureData;
 }

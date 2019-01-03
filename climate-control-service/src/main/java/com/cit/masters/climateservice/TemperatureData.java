@@ -1,11 +1,11 @@
-package com.cit.masters.fireservice;
+package com.cit.masters.climateservice;
 
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  *
@@ -14,11 +14,11 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @ToString
-public class AssetClimateData {
+public class TemperatureData implements Serializable {
 
     @NonNull
     private int temperature;
 
-    @NotNull
+    @NonNull
     private String sensorId;
 }

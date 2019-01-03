@@ -1,4 +1,4 @@
-package com.cit.masters.contactservice;
+package com.cit.masters.assetservice;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,13 +8,12 @@ import lombok.ToString;
 /**
  *
  */
-
 @Getter
 @Setter
 @AllArgsConstructor
 @ToString
-public class Contact {
+public class Asset {
 
-    private String name;
-    private String phone;
+    private String roomBuilding;
+    private String roomId;
 }

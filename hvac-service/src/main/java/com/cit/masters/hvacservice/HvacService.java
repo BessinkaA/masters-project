@@ -11,10 +11,10 @@ import static java.util.UUID.fromString;
 @Service
 public class HvacService {
 
-    public Boolean receive(AssetClimateData data) {
+    public Boolean receive(EnrichedTemperatureData data) {
 
         try {
-            fromString(data.getSensorId());
+            fromString(data.getTemperatureData().getSensorId());
             return true;
         } catch (IllegalArgumentException exception) {
             return false;

@@ -20,8 +20,15 @@ public class TemperatureService {
         if (data.getTemperature() < 15 || data.getTemperature() > 25) {
             log.info("Temperature for sensor {} is not in a normal range: {}", data.getSensorId(), data.getTemperature());
 
+            // Get room information -> query Asset service
             RestTemplate restTemplate = new RestTemplate();
-            HttpEntity<TemperatureData> request = new HttpEntity<>(data);
+            AssetResponse asset = restTemplate.getForObject("http://localhost:8088/" + data.getSensorId(), AssetResponse.class);
+
+            // Create new payload
+            EnrichedTemperatureData enrichedData = new EnrichedTemperatureData(asset, data);
+
+            // TODO: is this request needed? Pass data straight to postForEntity?
+            HttpEntity<EnrichedTemperatureData> request = new HttpEntity<>(enrichedData);
             try {
                 // TODO all internal requests route via Gateway
                 ResponseEntity<String> entity = restTemplate.postForEntity("http://localhost:8083", request, String.class);

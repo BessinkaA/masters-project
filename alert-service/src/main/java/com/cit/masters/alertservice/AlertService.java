@@ -15,7 +15,7 @@ public class AlertService {
     public Boolean receive(EnrichedAssetClimateData data) {
 
         try {
-            fromString(data.getClimateData().getSensorId());
+            fromString(data.getClimateData().getTemperatureData().getSensorId());
             return true;
         } catch (IllegalArgumentException exception) {
             return false;

@@ -8,13 +8,12 @@ import lombok.ToString;
 /**
  *
  */
-
-@Setter
 @Getter
+@Setter
 @AllArgsConstructor
 @ToString
-public class EnrichedAssetClimateData {
+public class EnrichedTemperatureData {
 
-    private ContactResponse contact;
-    private EnrichedTemperatureData climateData;
+    private AssetResponse asset;
+    private TemperatureData temperatureData;
 }

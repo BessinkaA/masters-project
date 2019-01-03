@@ -21,7 +21,7 @@ public class HvacController {
     private HvacService hvacService;
 
     @PostMapping
-    public ResponseEntity<Object> create(@RequestBody @Valid AssetClimateData data) {
+    public ResponseEntity<Object> create(@RequestBody @Valid EnrichedTemperatureData data) {
         log.info("Incoming Temperature request to HVAC Controller: {}", data);
         boolean received = hvacService.receive(data);
         if (!received) {

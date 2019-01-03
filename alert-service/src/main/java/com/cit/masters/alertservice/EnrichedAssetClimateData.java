@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 public class EnrichedAssetClimateData {
 
     @NotNull
-    private AssetClimateData climateData;
+    private EnrichedTemperatureData climateData;
 
     @NotNull
     private Contact contact;

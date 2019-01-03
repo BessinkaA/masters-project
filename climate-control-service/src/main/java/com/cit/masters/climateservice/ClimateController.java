@@ -22,7 +22,7 @@ public class ClimateController {
     private ClimateService climateService;
 
     @PostMapping
-    public ResponseEntity<Object> create(@RequestBody @Valid AssetClimateData data) {
+    public ResponseEntity<Object> create(@RequestBody @Valid EnrichedTemperatureData data) {
         log.info("Incoming Temperature request to Climate Control: {}", data);
         boolean received = climateService.receive(data);
         if (!received) {

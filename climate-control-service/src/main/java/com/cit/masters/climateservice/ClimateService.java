@@ -13,14 +13,14 @@ import org.springframework.web.client.RestTemplate;
 @Slf4j
 public class ClimateService {
 
-    public Boolean receive(AssetClimateData data) {
+    public Boolean receive(EnrichedTemperatureData data) {
 
         // TODO: add proper validation for UUID and such
-        log.info("Fire alert received, temperature is {}", data.getTemperature());
+        log.info("Fire alert received, temperature is {}", data.getTemperatureData().getTemperature());
         RestTemplate restTemplate = new RestTemplate();
 
-        if (data.getTemperature() > 50) {
-            HttpEntity<AssetClimateData> request = new HttpEntity<>(data);
+        if (data.getTemperatureData().getTemperature() > 50) {
+            HttpEntity<EnrichedTemperatureData> request = new HttpEntity<>(data);
             try {
                 ResponseEntity<String> entity = restTemplate.postForEntity("http://localhost:8084", request, String.class);
                 log.info("Response status: {}", entity.getStatusCodeValue());
@@ -29,8 +29,9 @@ public class ClimateService {
                 return false;
             }
         } else {
-            log.info("Not a fire event, temperature is {}. Sending request to HVAC service.", data.getTemperature());
-            HttpEntity<AssetClimateData> request = new HttpEntity<>(data);
+            log.info("Not a fire event, temperature is {}. Sending request to HVAC service.", data.getTemperatureData()
+                                                                                                  .getTemperature());
+            HttpEntity<EnrichedTemperatureData> request = new HttpEntity<>(data);
             try {
                 ResponseEntity<String> entity = restTemplate.postForEntity("http://localhost:8085", request, String.class);
                 log.info("Response status: {}", entity.getStatusCodeValue());

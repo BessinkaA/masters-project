@@ -11,7 +11,8 @@
 		<module>occupancy-service</module>
 		<module>temperature-service</module>
 		<module>climate-control-service</module>
-	</modules>
+        <module>fire-service</module>
+    </modules>
 	<packaging>pom</packaging>
 
 	<name>masters-project</name>

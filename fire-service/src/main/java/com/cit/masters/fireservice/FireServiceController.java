@@ -22,7 +22,7 @@ public class FireServiceController {
 
     @PostMapping
     public ResponseEntity<Object> create(@RequestBody @Valid AssetClimateData data) {
-        log.info("Incoming Fire allert to Fire Service: {}", data);
+        log.info("Incoming Fire alert to Fire Service: {}", data);
         boolean received = fireService.receive(data);
         if (!received) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);

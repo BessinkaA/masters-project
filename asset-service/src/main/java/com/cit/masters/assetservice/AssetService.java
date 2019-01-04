@@ -14,7 +14,7 @@ import java.util.Random;
 @Slf4j
 public class AssetService {
     public Asset getAsset() {
-
+        log.info("Getting asset...");
         List<Asset> assets = AssetUtils.getAssets();
 
         //Get random asset

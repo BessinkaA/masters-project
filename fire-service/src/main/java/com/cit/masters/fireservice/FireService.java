@@ -13,18 +13,22 @@ import org.springframework.web.client.RestTemplate;
 @Slf4j
 public class FireService {
 
-    public Boolean receive(EnrichedTemperatureData data) {
+    public Boolean process(EnrichedTemperatureData data) {
 
         // TODO: add proper validation for UUID and such
         log.info("Fire service: Fire alert received, temperature is {}", data.getTemperatureData().getTemperature());
         RestTemplate restTemplate = new RestTemplate();
+
+        // Check if room is empty or not
+        OccupancyResponse peopleNumber = restTemplate.getForObject("http://localhost:8082/" + data.getAsset()
+                                                                                                       .getRoomId(), OccupancyResponse.class);
 
         // Request contact from contact service
         ContactResponse contact = restTemplate.getForObject("http://localhost:8087/" + data.getTemperatureData()
                                                                                            .getSensorId(), ContactResponse.class);
 
         // Create new payload
-        EnrichedAssetClimateData enrichedData = new EnrichedAssetClimateData(contact, data);
+        EnrichedAssetClimateData enrichedData = new EnrichedAssetClimateData(contact, data, peopleNumber);
 
         // Contact alert Service
         HttpEntity<EnrichedAssetClimateData> request = new HttpEntity<>(enrichedData);

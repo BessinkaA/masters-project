@@ -17,4 +17,5 @@ public class EnrichedAssetClimateData {
 
     private ContactResponse contact;
     private EnrichedTemperatureData climateData;
+    private OccupancyResponse peopleNumber;
 }

@@ -1,22 +1,31 @@
 package com.cit.masters.occupancyservice;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import static java.util.UUID.fromString;
+import java.util.List;
+import java.util.Random;
 
 /**
  *
  */
 @Service
+@Slf4j
 public class OccupancyService {
 
-    public Boolean receive(OccupancyData data) {
+    public void receive(OccupancyData data) {
+        List<OccupancyData> peopleNumber = OccupancyUtils.occupancyDataList();
+        peopleNumber.add(data);
+    }
 
-        try {
-            fromString(data.getSensorId());
-            return true;
-        } catch (IllegalArgumentException exception) {
-            return false;
-        }
+    public OccupancyData getOccupancy() {
+        List<OccupancyData> occupancyDataList = OccupancyUtils.occupancyDataList();
+
+        //Get random asset
+        OccupancyData randomOccupancy = occupancyDataList.get(new Random().nextInt(occupancyDataList.size()));
+        log.info("Got occupancy: {}", randomOccupancy);
+
+        return randomOccupancy;
+
     }
 }

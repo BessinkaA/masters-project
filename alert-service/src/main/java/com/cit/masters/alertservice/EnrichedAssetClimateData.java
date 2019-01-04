@@ -20,4 +20,7 @@ public class EnrichedAssetClimateData {
 
     @NotNull
     private Contact contact;
+
+    @NotNull
+    private OccupancyResponse peopleNumber;
 }

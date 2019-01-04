@@ -16,16 +16,17 @@ public class ClimateService {
     public Boolean receive(EnrichedTemperatureData data) {
 
         // TODO: add proper validation for UUID and such
-        log.info("Fire alert received, temperature is {}", data.getTemperatureData().getTemperature());
         RestTemplate restTemplate = new RestTemplate();
 
         if (data.getTemperatureData().getTemperature() > 50) {
+            log.info("Fire alert received, temperature is {}", data.getTemperatureData().getTemperature());
             HttpEntity<EnrichedTemperatureData> request = new HttpEntity<>(data);
             try {
                 ResponseEntity<String> entity = restTemplate.postForEntity("http://localhost:8084", request, String.class);
                 log.info("Response status: {}", entity.getStatusCodeValue());
                 return true;
             } catch (Exception ex) {
+                log.error("Error contacting Fire Service", ex);
                 return false;
             }
         } else {
@@ -37,6 +38,7 @@ public class ClimateService {
                 log.info("Response status: {}", entity.getStatusCodeValue());
                 return true;
             } catch (Exception ex) {
+                log.error("Error contacting HVAC Service", ex);
                 return false;
             }
         }

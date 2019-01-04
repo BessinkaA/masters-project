@@ -25,7 +25,7 @@ public class TemperatureController {
         log.info("Temperature request: {}", data);
         boolean processed = temperatureService.process(data);
         if (!processed) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Nope");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Something went wrong");
         }
         return ResponseEntity.status(HttpStatus.OK).body("Temperature request was processed");
     }

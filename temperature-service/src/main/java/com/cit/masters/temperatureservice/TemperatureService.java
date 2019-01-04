@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -22,7 +23,13 @@ public class TemperatureService {
 
             // Get room information -> query Asset service
             RestTemplate restTemplate = new RestTemplate();
-            AssetResponse asset = restTemplate.getForObject("http://localhost:8088/" + data.getSensorId(), AssetResponse.class);
+            AssetResponse asset;
+            try {
+                asset = restTemplate.getForObject("http://localhost:8088/" + data.getSensorId(), AssetResponse.class);
+            } catch (RestClientException ex) {
+                log.error("Failed to get asset", ex);
+                return false;
+            }
 
             // Create new payload
             EnrichedTemperatureData enrichedData = new EnrichedTemperatureData(asset, data);
@@ -35,6 +42,7 @@ public class TemperatureService {
                 log.info("Response status: {}", entity.getStatusCodeValue());
                 return true;
             } catch (Exception ex) {
+                log.error("Failed to POST to climate control", ex);
                 return false;
             }
 

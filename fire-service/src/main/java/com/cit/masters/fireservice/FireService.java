@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -20,12 +21,24 @@ public class FireService {
         RestTemplate restTemplate = new RestTemplate();
 
         // Check if room is empty or not
-        OccupancyResponse peopleNumber = restTemplate.getForObject("http://localhost:8082/" + data.getAsset()
-                                                                                                       .getRoomId(), OccupancyResponse.class);
+        OccupancyResponse peopleNumber;
+        try {
+            peopleNumber = restTemplate.getForObject("http://localhost:8082/" + data.getAsset()
+                                                                                    .getRoomId(), OccupancyResponse.class);
+        } catch (RestClientException e) {
+            log.error("Couldn't receive room's occupancy", e);
+            return false;
+        }
 
         // Request contact from contact service
-        ContactResponse contact = restTemplate.getForObject("http://localhost:8087/" + data.getTemperatureData()
-                                                                                           .getSensorId(), ContactResponse.class);
+        ContactResponse contact;
+        try {
+            contact = restTemplate.getForObject("http://localhost:8087/" + data.getTemperatureData()
+                                                                               .getSensorId(), ContactResponse.class);
+        } catch (RestClientException e) {
+            log.error("Couldn't receive contacts", e);
+            return false;
+        }
 
         // Create new payload
         EnrichedAssetClimateData enrichedData = new EnrichedAssetClimateData(contact, data, peopleNumber);
@@ -36,7 +49,8 @@ public class FireService {
             ResponseEntity<String> entity = restTemplate.postForEntity("http://localhost:8086", request, String.class);
             log.info("Response status: {}", entity.getStatusCodeValue());
             return true;
-        } catch (Exception ex) {
+        } catch (RestClientException e) {
+            log.error("Couldn't contact Alert Service", e);
             return false;
 
         }

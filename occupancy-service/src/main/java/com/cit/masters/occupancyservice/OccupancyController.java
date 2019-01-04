@@ -25,7 +25,7 @@ public class OccupancyController {
     @PostMapping
     public ResponseEntity<Object> create(@RequestBody @Valid OccupancyData data) {
         log.info("Occupancy request: {}", data);
-        occupancyService.receive(data);
+        occupancyService.addOccupancyData(data);
         return ResponseEntity.status(HttpStatus.OK).body("Received occupancy data: " + data);
     }
 

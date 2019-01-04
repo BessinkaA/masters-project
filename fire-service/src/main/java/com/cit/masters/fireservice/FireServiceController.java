@@ -21,7 +21,7 @@ public class FireServiceController {
     private FireService fireService;
 
     @PostMapping
-    public ResponseEntity<Object> create(@RequestBody @Valid EnrichedTemperatureData data) {
+    public ResponseEntity<Object> receiveFireEvent(@RequestBody @Valid EnrichedTemperatureData data) {
         log.info("Incoming Fire alert to Fire Service: {}", data);
         boolean received = fireService.process(data);
         if (!received) {

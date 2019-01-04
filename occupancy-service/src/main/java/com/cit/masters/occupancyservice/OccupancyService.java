@@ -13,13 +13,15 @@ import java.util.Random;
 @Slf4j
 public class OccupancyService {
 
+    private List<OccupancyData> occupancyDataList = OccupancyUtils.occupancyDataList();
+
     public void receive(OccupancyData data) {
-        List<OccupancyData> peopleNumber = OccupancyUtils.occupancyDataList();
-        peopleNumber.add(data);
+        log.info("Got currently available occupancies: {}", occupancyDataList);
+        occupancyDataList.add(data);
     }
 
     public OccupancyData getOccupancy() {
-        List<OccupancyData> occupancyDataList = OccupancyUtils.occupancyDataList();
+        log.info("Got GET for occupancy, available occupancy: {}", occupancyDataList);
 
         //Get random asset
         OccupancyData randomOccupancy = occupancyDataList.get(new Random().nextInt(occupancyDataList.size()));

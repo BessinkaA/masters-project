@@ -21,7 +21,7 @@ public class TemperatureController {
     private TemperatureService temperatureService;
 
     @PostMapping
-    public ResponseEntity<Object> create(@RequestBody @Valid TemperatureData data) {
+    public ResponseEntity<Object> receiveTemperatureData(@RequestBody @Valid TemperatureData data) {
         log.info("Temperature request: {}", data);
         boolean processed = temperatureService.process(data);
         if (!processed) {

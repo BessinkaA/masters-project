@@ -7,12 +7,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.Resource;
+
 /**
  *
  */
 @Service
 @Slf4j
 public class TemperatureService {
+
+    @Resource
+    private RestTemplate restTemplate;
 
     public Boolean process(TemperatureData data) {
 
@@ -22,7 +27,6 @@ public class TemperatureService {
             log.info("Temperature for sensor {} is not in a normal range: {}", data.getSensorId(), data.getTemperature());
 
             // Get room information -> query Asset service
-            RestTemplate restTemplate = new RestTemplate();
             AssetResponse asset;
             try {
                 asset = restTemplate.getForObject("http://localhost:8088/" + data.getSensorId(), AssetResponse.class);

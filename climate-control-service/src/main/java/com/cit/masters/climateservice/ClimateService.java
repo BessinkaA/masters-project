@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.Resource;
+
 /**
  *
  */
@@ -13,11 +15,12 @@ import org.springframework.web.client.RestTemplate;
 @Slf4j
 public class ClimateService {
 
+    @Resource
+    private RestTemplate restTemplate;
+
     public Boolean receive(EnrichedTemperatureData data) {
 
         // TODO: add proper validation for UUID and such
-        RestTemplate restTemplate = new RestTemplate();
-
         if (data.getTemperatureData().getTemperature() > 50) {
             log.info("Fire alert received, temperature is {}", data.getTemperatureData().getTemperature());
             HttpEntity<EnrichedTemperatureData> request = new HttpEntity<>(data);

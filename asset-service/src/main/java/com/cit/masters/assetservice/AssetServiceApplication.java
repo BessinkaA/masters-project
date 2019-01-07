@@ -12,4 +12,5 @@ public class AssetServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(AssetServiceApplication.class, args);
     }
+
 }

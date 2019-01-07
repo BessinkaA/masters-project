@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.Resource;
+
 /**
  *
  */
@@ -14,11 +16,13 @@ import org.springframework.web.client.RestTemplate;
 @Slf4j
 public class FireService {
 
+    @Resource
+    private RestTemplate restTemplate;
+
     public Boolean process(EnrichedTemperatureData data) {
 
         // TODO: add proper validation for UUID and such
         log.info("Fire service: Fire alert received, temperature is {}", data.getTemperatureData().getTemperature());
-        RestTemplate restTemplate = new RestTemplate();
 
         // Check if room is empty or not
         OccupancyResponse peopleNumber;

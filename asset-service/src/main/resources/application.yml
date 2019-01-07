@@ -4,3 +4,12 @@ server:
 spring:
   application:
     name: asset-service
+  zipkin:
+    base-url: http://localhost:9411
+    service:
+      name: asset-service
+    sender:
+      type: web
+  sleuth:
+    sampler:
+      probability: 1.0

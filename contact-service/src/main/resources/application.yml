@@ -4,3 +4,12 @@ server:
 spring:
   application:
     name: contact-service
+  zipkin:
+    base-url: http://localhost:9411
+    service:
+      name: contact-service
+    sender:
+      type: web
+  sleuth:
+    sampler:
+      probability: 1.0

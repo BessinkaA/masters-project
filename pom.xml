@@ -16,7 +16,7 @@
 		<module>alert-service</module>
         <module>contact-service</module>
 		<module>asset-service</module>
-	</modules>
+    </modules>
 	<packaging>pom</packaging>
 
 	<name>masters-project</name>
@@ -43,6 +43,11 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>${lombok.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zipkin</artifactId>
 		</dependency>
 
 		<dependency>

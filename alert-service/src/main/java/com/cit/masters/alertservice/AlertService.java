@@ -1,13 +1,10 @@
 package com.cit.masters.alertservice;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
+import lombok.extern.slf4j.*;
+import org.springframework.stereotype.*;
 
-import static java.util.UUID.fromString;
+import static java.util.UUID.*;
 
-/**
- *
- */
 @Service
 @Slf4j
 public class AlertService {

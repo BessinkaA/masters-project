@@ -1,11 +1,7 @@
 package com.cit.masters.assetservice;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
-/**
- *
- */
 public class AssetUtils {
 
     public static List<Asset> getAssets() {

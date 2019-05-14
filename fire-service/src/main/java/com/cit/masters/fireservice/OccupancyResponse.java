@@ -1,12 +1,7 @@
 package com.cit.masters.fireservice;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-/**
- *
- */
 @Getter
 @Setter
 @ToString

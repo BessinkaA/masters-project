@@ -1,17 +1,12 @@
 package com.cit.masters.temperatureservice;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.RestTemplate;
+import lombok.extern.slf4j.*;
+import org.springframework.http.*;
+import org.springframework.stereotype.*;
+import org.springframework.web.client.*;
 
-import javax.annotation.Resource;
+import javax.annotation.*;
 
-/**
- *
- */
 @Service
 @Slf4j
 public class TemperatureService {
@@ -20,9 +15,6 @@ public class TemperatureService {
     private RestTemplate restTemplate;
 
     public Boolean process(TemperatureData data) {
-
-        // TODO: add UUID normal check
-        // TODO: remove "service" from package names
         if (data.getTemperature() < 15 || data.getTemperature() > 25) {
             log.info("Temperature for sensor {} is not in a normal range: {}", data.getSensorId(), data.getTemperature());
 
@@ -38,10 +30,8 @@ public class TemperatureService {
             // Create new payload
             EnrichedTemperatureData enrichedData = new EnrichedTemperatureData(asset, data);
 
-            // TODO: is this request needed? Pass data straight to postForEntity?
             HttpEntity<EnrichedTemperatureData> request = new HttpEntity<>(enrichedData);
             try {
-                // TODO all internal requests route via Gateway
                 ResponseEntity<String> entity = restTemplate.postForEntity("http://localhost:8083", request, String.class);
                 log.info("Response status: {}", entity.getStatusCodeValue());
                 return true;

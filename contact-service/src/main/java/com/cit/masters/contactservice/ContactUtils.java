@@ -1,11 +1,7 @@
 package com.cit.masters.contactservice;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
-/**
- *
- */
 public class ContactUtils {
 
     public static List<Contact> getContactsList() {

@@ -1,12 +1,8 @@
 package com.cit.masters.hvacservice;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.*;
 
-import static java.util.UUID.fromString;
-
-/**
- *
- */
+import static java.util.UUID.*;
 
 @Service
 public class HvacService {

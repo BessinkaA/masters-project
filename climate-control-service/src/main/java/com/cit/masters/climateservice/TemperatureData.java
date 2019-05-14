@@ -1,15 +1,8 @@
 package com.cit.masters.climateservice;
 
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-import java.io.Serializable;
-
-/**
- *
- */
+import java.io.*;
 
 @Getter
 @Setter

@@ -1,13 +1,9 @@
 package com.cit.masters.fireservice;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.client.RestTemplate;
-
-/**
- *
- */
+import org.springframework.boot.*;
+import org.springframework.boot.autoconfigure.*;
+import org.springframework.context.annotation.*;
+import org.springframework.web.client.*;
 
 @SpringBootApplication
 public class FireServiceApplication {

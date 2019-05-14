@@ -1,14 +1,10 @@
 package com.cit.masters.occupancyservice;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
+import lombok.extern.slf4j.*;
+import org.springframework.stereotype.*;
 
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
-/**
- *
- */
 @Service
 @Slf4j
 public class OccupancyService {

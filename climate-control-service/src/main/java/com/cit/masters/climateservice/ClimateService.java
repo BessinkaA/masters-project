@@ -1,16 +1,12 @@
 package com.cit.masters.climateservice;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+import lombok.extern.slf4j.*;
+import org.springframework.http.*;
+import org.springframework.stereotype.*;
+import org.springframework.web.client.*;
 
-import javax.annotation.Resource;
+import javax.annotation.*;
 
-/**
- *
- */
 @Service
 @Slf4j
 public class ClimateService {
@@ -20,7 +16,6 @@ public class ClimateService {
 
     public Boolean receive(EnrichedTemperatureData data) {
 
-        // TODO: add proper validation for UUID and such
         if (data.getTemperatureData().getTemperature() > 50) {
             log.info("Fire alert received, temperature is {}", data.getTemperatureData().getTemperature());
             HttpEntity<EnrichedTemperatureData> request = new HttpEntity<>(data);

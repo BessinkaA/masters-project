@@ -1,17 +1,12 @@
 package com.cit.masters.fireservice;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.RestTemplate;
+import lombok.extern.slf4j.*;
+import org.springframework.http.*;
+import org.springframework.stereotype.*;
+import org.springframework.web.client.*;
 
-import javax.annotation.Resource;
+import javax.annotation.*;
 
-/**
- *
- */
 @Service
 @Slf4j
 public class FireService {
@@ -21,7 +16,6 @@ public class FireService {
 
     public Boolean process(EnrichedTemperatureData data) {
 
-        // TODO: add proper validation for UUID and such
         log.info("Fire service: Fire alert received, temperature is {}", data.getTemperatureData().getTemperature());
 
         // Check if room is empty or not
@@ -37,8 +31,8 @@ public class FireService {
         // Request contact from contact service
         ContactResponse contact;
         try {
-            contact = restTemplate.getForObject("http://localhost:8087/" + data.getTemperatureData()
-                                                                               .getSensorId(), ContactResponse.class);
+            contact = restTemplate.getForObject("http://localhost:8087/" + data.getAsset()
+                                                                               .getRoomId(), ContactResponse.class);
         } catch (RestClientException e) {
             log.error("Couldn't receive contacts", e);
             return false;
